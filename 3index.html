@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Za-Burger | زا برجر - تجربة برجر خيالية من العيار الثقيل</title>
+    <!-- Google Fonts for modern Arabic styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-deep: #0a0a0a;
+            --bg-card: #141414;
+            --primary-red: #d32f2f;
+            --accent-red: #ff1744;
+            --dark-red: #8b0000;
+            --text-main: #ffffff;
+            --text-muted: #b0b0b0;
+            --border-red: rgba(211, 47, 47, 0.4);
+            --glow: 0 0 20px rgba(211, 47, 47, 0.5);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Cairo', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-deep);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-red);
+            border-radius: 5px;
+        }
+
+        /* Background grid/pattern vibes */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(211, 47, 47, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+        }
+
+        /* Header & Navbar */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--border-red);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--text-main);
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, #fff, var(--primary-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text span {
+            color: var(--accent-red);
+            -webkit-text-fill-color: var(--accent-red);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-red);
+            text-shadow: 0 0 10px rgba(255, 23, 68, 0.6);
+        }
+
+        .cart-btn {
+            background: var(--primary-red);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+        }
+
+        .cart-btn:hover {
+            background: var(--accent-red);
+            transform: translateY(-2px);
+            box-shadow: var(--glow);
+        }
+
+        .cart-badge {
+            background: #fff;
+            color: var(--primary-red);
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+            margin-top: 80px;
+            background: linear-gradient(180deg, rgba(10,10,10,0.5) 0%, var(--bg-deep) 100%), 
+                        radial-gradient(circle at center, rgba(211,47,47,0.15) 0%, transparent 70%);
+        }
+
+        .hero-content h1 {
+            font-size: clamp(40px, 6vw, 75px);
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent-red);
+            text-shadow: 0 0 30px rgba(255, 23, 68, 0.8);
+        }
+
+        .hero-content p {
+            font-size: clamp(18px, 2vw, 24px);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 35px;
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, var(--primary-red), var(--accent-red));
+            color: white;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(211, 47, 47, 0.5);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 23, 68, 0.7);
+        }
+
+        /* Menu Container */
+        .menu-section {
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-red);
+            margin: 10px auto 0;
+            border-radius: 2px;
+            box-shadow: var(--glow);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+
+        /* Category Filter Tabs */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .tab-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-red);
+            color: var(--text-muted);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary-red);
+            color: white;
+            border-color: var(--accent-red);
+            box-shadow: var(--glow);
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-red);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-red);
+            box-shadow: var(--glow);
+        }
+
+        .card-header-tag {
+            background: var(--primary-red);
+            color: white;
+            padding: 8px 15px;
+            font-size: 14px;
+            font-weight: 700;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .card-body {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .card-ingredients {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        /* Pricing options (Single / Double) */
+        .pricing-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.3);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .price-option {
+            flex: 1;
+            text-align: center;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .price-option input {
+            display: none;
+        }
+
+        .price-option label {
+            display: block;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .price-option .price-val {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent-red);
+        }
+
+        .price-option.selected {
+            background: var(--primary-red);
+        }
+        .price-option.selected label, .price-option.selected .price-val {
+            color: #fff !important;
+        }
+
+        .single-price {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent-red);
+            margin-bottom: 20px;
+        }
+
+        .add-to-cart-item {
+            background: transparent;
+            border: 2px solid var(--primary-red);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .add-to-cart-item:hover {
+            background: var(--primary-red);
+            box-shadow: var(--glow);
+        }
+
+        /* Cart Sidebar Drawer */
+        .cart-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0; left: 0; width: 450px; max-width: 90%; height: 100%;
+            background: var(--bg-card);
+            z-index: 2001;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.8);
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            border-left: 2px solid var(--border-red);
+        }
+
+        .cart-drawer.active {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            padding: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-cart:hover {
+            color: var(--accent-red);
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 25px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.03);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .cart-item-info h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-info span {
+            color: var(--accent-red);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .qty-btn:hover {
+            background: var(--primary-red);
+        }
+
+        .cart-footer {
+            padding: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.5);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(45deg, var(--primary-red), var(--accent-red));
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 20px rgba(211,47,47,0.4);
+        }
+
+        .checkout-btn:hover {
+            box-shadow: var(--glow);
+            transform: translateY(-2px);
+        }
+
+        /* Footer info */
+        footer {
+            background: var(--bg-card);
+            border-top: 2px solid var(--border-red);
+            padding: 50px 5% 30px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.02);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--border-red);
+        }
+
+        .contact-card i {
+            font-size: 30px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+        }
+
+        .contact-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 14px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .hero-content h1 { font-size: 38px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo-area">
+            <div class="logo-text">Za<span>-Burger</span></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#menu" class="active">المنيو الرئيسي</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <button class="cart-btn" id="openCartBtn">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>السلة</span>
+            <span class="cart-badge" id="cartCount">0</span>
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>برجر على أصوله <span>من العيار الثقيل</span></h1>
+            <p>ألذ سماش برجر، برجر مشروم، راب، وصنوف السعادة بخلطات سرية حديثة ومبتكرة!</p>
+            <a href="#menu" class="cta-btn">تصفح المنيو الآن</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <h2 class="section-title">قائمة الطعام الفاخرة</h2>
+        <p class="section-subtitle">اختر وجبتك المفضلة وتمتع بالطعم الخيالي</p>
+
+        <!-- Category Tabs -->
+        <div class="category-tabs">
+            <button class="tab-btn active" data-category="all">الكل</button>
+            <button class="tab-btn" data-category="smash">سماش برجر</button>
+            <button class="tab-btn" data-category="beef">بيف برجر</button>
+            <button class="tab-btn" data-category="chicken">سندوتشات فراخ</button>
+            <button class="tab-btn" data-category="wrap">منيو الراب</button>
+            <button class="tab-btn" data-category="deals">العروض والبوكسات</button>
+            <button class="tab-btn" data-category="sides">المقبلات</button>
+            <button class="tab-btn" data-category="kids">وجبات الأطفال</button>
+            <button class="tab-btn" data-category="kids-sandwich">سندوتش الأطفال</button>
+            <button class="tab-btn" data-category="extras">الإضافات والشروبات</button>
+        </div>
+
+        <!-- Menu Grid Items -->
+        <div class="menu-grid" id="menuGrid">
+            <!-- Items populated dynamically via script -->
+        </div>
+    </section>
+
+    <!-- Cart Sidebar Drawer -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>سلة الطلبات الخاصة بك</h3>
+            <button class="close-cart" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            <!-- Cart items added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>الإجمالي:</span>
+                <span id="cartTotalPrice">0 ج.م</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">إتمام الطلب عبر واتساب</button>
+        </div>
+    </div>
+
+    <!-- Contact Footer -->
+    <footer id="contact">
+        <div class="contact-info-grid">
+            <div class="contact-card">
+                <i class="fa-solid fa-location-dot"></i>
+                <h4>العنوان</h4>
+                <p>شارع المرابيع - بجوار اوه دونات</p>
+            </div>
+            <div class="contact-card">
+                <i class="fa-solid fa-phone"></i>
+                <h4>أرقام الحجز والطلب</h4>
+                <p>010 2900 9524<br>015 0015 2625<br>045 213 6669</p>
+            </div>
+            <div class="contact-card">
+                <i class="fa-solid fa-fire-flame-curved"></i>
+                <h4>الجودة</h4>
+                <p>طازج يومياً - لحوم بلدي 100% - صوصات حصرية</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة &copy; Za-Burger 2026 | تصميم وتطوير احترافي عالي الأداء</p>
+        </div>
+    </footer>
+
+    <!-- Application JavaScript Code -->
+    <script>
+        // إجبار الصفحة على البدء من الأعلى دائماً عند الفتح
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+            if (window.location.hash) {
+                history.replaceState(null, null, window.location.pathname);
+            }
+        });
+
+        // Menu Database precisely matched to official menu images
+        const menuData = [
+            // Smash Burger
+            {
+                id: 1,
+                name: "سماش كلاسيك",
+                category: "smash",
+                tag: "سماش برجر",
+                ingredients: "قطعة لحم بقري - امريكان تشيز - بصل - طماطم - خيار - خس - صوص الف جزيرة",
+                hasDouble: true,
+                priceSingle: 125,
+                priceDouble: 175
+            },
+            {
+                id: 2,
+                name: "سماش تكساس",
+                category: "smash",
+                tag: "سماش برجر",
+                ingredients: "قطعة لحم بقري - بيكون - امريكان تشيز - بصل - خيار - خس - صوص تكساس",
+                hasDouble: true,
+                priceSingle: 140,
+                priceDouble: 190
+            },
+            {
+                id: 3,
+                name: "سماش مشروم",
+                category: "smash",
+                tag: "سماش برجر",
+                ingredients: "قطعة لحم بقري - مشروم - وايت تشيز - بصل مكرمل - خيار - صوص راتش",
+                hasDouble: true,
+                priceSingle: 150,
+                priceDouble: 200
+            },
+
+            // Beef Burger
+            {
+                id: 4,
+                name: "برجر بالجبنة",
+                category: "beef",
+                tag: "بيف برجر",
+                ingredients: "قطعة لحم بقري - امريكان تشيز - بصل - طماطم - خيار - خس - صوص الف جزيرة",
+                hasDouble: true,
+                priceSingle: 135,
+                priceDouble: 195
+            },
+            {
+                id: 5,
+                name: "برجر تشاتشا",
+                category: "beef",
+                tag: "بيف برجر",
+                ingredients: "قطعة لحم بقري - امريكان تشيز - بصل - خيار - خس - جالبينو - سويت تشيلي - ساموراي",
+                hasDouble: true,
+                priceSingle: 145,
+                priceDouble: 205
+            },
+            {
+                id: 6,
+                name: "برجر مدخن",
+                category: "beef",
+                tag: "بيف برجر",
+                ingredients: "قطعة لحم بقري - بيكون - حلقات بصل مقلي - شيدر صوص - خيار - خس - صوص باربيكيو",
+                hasDouble: true,
+                priceSingle: 160,
+                priceDouble: 220
+            },
+            {
+                id: 7,
+                name: "برجر مشروم",
+                category: "beef",
+                tag: "بيف برجر",
+                ingredients: "قطعة لحم بقري - مشروم - وايت تشيز - بصل مكرمل - خيار - صوص راتش",
+                hasDouble: true,
+                priceSingle: 170,
+                priceDouble: 230
+            },
+            {
+                id: 8,
+                name: "برجر أوه",
+                category: "beef",
+                tag: "بيف برجر",
+                ingredients: "قطعة لحم بقري - بيكون - موتزاريلا ستيكس - وايت تشيز - خيار - خس - صوص بوسطن",
+                hasDouble: true,
+                priceSingle: 180,
+                priceDouble: 240
+            },
+            {
+                id: 9,
+                name: "برجر زا",
+                category: "beef",
+                tag: "بيف برجر",
+                ingredients: "قطعة لحم بقري - قطعة لحم ستيك - وايت تشيز - امريكان تشيز - بصل مشوي - خيار - خس - صوص بوسطن",
+                hasDouble: true,
+                priceSingle: 180,
+                priceDouble: 240
+            },
+
+            // Chicken Sandwiches
+            {
+                id: 10,
+                name: "فراخ كلاسيك",
+                category: "chicken",
+                tag: "سندوتشات فراخ",
+                ingredients: "صدور فراخ - خيار - خس - امريكان تشيز - صوص الف جزيرة",
+                hasDouble: true,
+                priceSingle: 135,
+                priceDouble: 195
+            },
+            {
+                id: 11,
+                name: "فراخ باربيكيو",
+                category: "chicken",
+                tag: "سندوتشات فراخ",
+                ingredients: "صدور فراخ - خيار - خس - حلقات بصل - صوص شيدر - صوص باربيكيو",
+                hasDouble: true,
+                priceSingle: 140,
+                priceDouble: 200
+            },
+            {
+                id: 12,
+                name: "فراخ تشاتشا",
+                category: "chicken",
+                tag: "سندوتشات فراخ",
+                ingredients: "صدور فراخ - خيار - خس - امريكان تشيز - جالبينو - صوص ساموراي - صوص سويت تشيلي",
+                hasDouble: true,
+                priceSingle: 145,
+                priceDouble: 205
+            },
+            {
+                id: 13,
+                name: "فراخ بوسطن",
+                category: "chicken",
+                tag: "سندوتشات فراخ",
+                ingredients: "صدور فراخ - خيار - خس - صوص بوسطن - امريكان تشيز - رومي",
+                hasDouble: true,
+                priceSingle: 150,
+                priceDouble: 210
+            },
+            {
+                id: 14,
+                name: "فراخ تكساس",
+                category: "chicken",
+                tag: "سندوتشات فراخ",
+                ingredients: "صدور فراخ - خيار - خس - صوص تكساس - موتزاريلا ستيكس - امريكان تشيز",
+                hasDouble: true,
+                priceSingle: 155,
+                priceDouble: 215
+            },
+            {
+                id: 15,
+                name: "فراخ بابس",
+                category: "chicken",
+                tag: "سندوتشات فراخ",
+                ingredients: "صدور فراخ - خيار - صوص راتش - وايت تشيز - رومي - مشروم - بصل مكرمل",
+                hasDouble: true,
+                priceSingle: 165,
+                priceDouble: 225
+            },
+
+            // Wrap Menu
+            {
+                id: 16,
+                name: "كلاسيك",
+                category: "wrap",
+                tag: "منيو الراب",
+                ingredients: "قطع ستريس - امريكان تشيز - خيار - خس - صوص الف جزيرة",
+                hasDouble: false,
+                priceSingle: 105,
+                priceDouble: 0
+            },
+            {
+                id: 17,
+                name: "بوسطن",
+                category: "wrap",
+                tag: "منيو الراب",
+                ingredients: "قطع ستريس - رومي مدخن - امريكان تشيز - خيار - خس - صوص بوسطن",
+                hasDouble: false,
+                priceSingle: 120,
+                priceDouble: 0
+            },
+            {
+                id: 18,
+                name: "بابس",
+                category: "wrap",
+                tag: "منيو الراب",
+                ingredients: "قطع ستريس - رومي مدخن - وايت تشيز - خيار - بصل - صوص راتش",
+                hasDouble: false,
+                priceSingle: 125,
+                priceDouble: 0
+            },
+            {
+                id: 19,
+                name: "كفتة",
+                category: "wrap",
+                tag: "منيو الراب",
+                ingredients: "كفتة - سلطة - طحينة",
+                hasDouble: false,
+                priceSingle: 115,
+                priceDouble: 0
+            },
+            {
+                id: 20,
+                name: "سجق",
+                category: "wrap",
+                tag: "منيو الراب",
+                ingredients: "سجق - بصل - هالابينو - طماطم - راتش",
+                hasDouble: false,
+                priceSingle: 115,
+                priceDouble: 0
+            },
+            {
+                id: 21,
+                name: "فاهيتا فراخ",
+                category: "wrap",
+                tag: "منيو الراب",
+                ingredients: "فاهيتا فراخ - خيار - امريكان تشيز - مايونيز",
+                hasDouble: false,
+                priceSingle: 120,
+                priceDouble: 0
+            },
+            {
+                id: 22,
+                name: "فاهيتا لحم",
+                category: "wrap",
+                tag: "منيو الراب",
+                ingredients: "فاهيتا لحم - خيار - امريكان تشيز - مايونيز",
+                hasDouble: false,
+                priceSingle: 135,
+                priceDouble: 0
+            },
+            {
+                id: 23,
+                name: "تكساس",
+                category: "wrap",
+                tag: "منيو الراب",
+                ingredients: "قطعة برجر - امريكان تشيز - بيكون - خيار - بصل - خس - صوص تكساس",
+                hasDouble: false,
+                priceSingle: 140,
+                priceDouble: 0
+            },
+            {
+                id: 24,
+                name: "مشروم فراخ",
+                category: "wrap",
+                tag: "منيو الراب",
+                ingredients: "فراخ - مشروم - امريكان تشيز - خيار - بصل مكرمل - صوص راتش",
+                hasDouble: false,
+                priceSingle: 140,
+                priceDouble: 0
+            },
+            {
+                id: 25,
+                name: "مشروم لحم",
+                category: "wrap",
+                tag: "منيو الراب",
+                ingredients: "لحم - مشروم - امريكان تشيز - خيار - بصل مكرمل - صوص راتش",
+                hasDouble: false,
+                priceSingle: 150,
+                priceDouble: 0
+            },
+
+            // Deals & Boxes
+            {
+                id: 26,
+                name: "بوكس 2 سندوتش (بوكس انا وانت)",
+                category: "deals",
+                tag: "عروض وبوكسات",
+                ingredients: "2 سندوتش راب مختلفين من اختيارك + فرايز + 1 صوص",
+                hasDouble: false,
+                priceSingle: 235,
+                priceDouble: 0
+            },
+            {
+                id: 27,
+                name: "بوكس 4 سندوتش (بوكس انا وانت)",
+                category: "deals",
+                tag: "عروض وبوكسات",
+                ingredients: "4 سندوتش راب مختلفين من اختيارك + 2 فرايز + 2 صوص",
+                hasDouble: false,
+                priceSingle: 435,
+                priceDouble: 0
+            },
+            {
+                id: 28,
+                name: "عرض الدبل",
+                category: "deals",
+                tag: "عروض وبوكسات",
+                ingredients: "2 سندوتش من اختيارك (برجر جبنة - برجر تشاتشا - دجاج كلاسيك - دجاج تشاتشا) + فرايز + لتر سوفتر درينك",
+                hasDouble: false,
+                priceSingle: 280,
+                priceDouble: 0
+            },
+            {
+                id: 29,
+                name: "عرض الفاميلي",
+                category: "deals",
+                tag: "عروض وبوكسات",
+                ingredients: "4 سندوتش من اختيارك (برجر جبنة - برجر تشاتشا - دجاج كلاسيك - دجاج تشاتشا) + 2 فرايز + لتر سوفتر درينك",
+                hasDouble: false,
+                priceSingle: 500,
+                priceDouble: 0
+            },
+
+            // Sides (المقبلات)
+            {
+                id: 30,
+                name: "بطاطس مقلية",
+                category: "sides",
+                tag: "المقبلات",
+                ingredients: "بطاطس كرينكل",
+                hasDouble: false,
+                priceSingle: 40,
+                priceDouble: 0
+            },
+            {
+                id: 31,
+                name: "بطاطس بالجبنة",
+                category: "sides",
+                tag: "المقبلات",
+                ingredients: "بطاطس متبلة - صوص شيدر",
+                hasDouble: false,
+                priceSingle: 75,
+                priceDouble: 0
+            },
+            {
+                id: 32,
+                name: "بطاطس بالجبنة الحارة",
+                category: "sides",
+                tag: "المقبلات",
+                ingredients: "بطاطس متبلة - صوص شيدر - قطع هالابينو - صوص تشيلي - ساموراي",
+                hasDouble: false,
+                priceSingle: 85,
+                priceDouble: 0
+            },
+            {
+                id: 33,
+                name: "بطاطس فراخ",
+                category: "sides",
+                tag: "المقبلات",
+                ingredients: "بطاطس متبلة - قطع دجاج ستريس - رومي مدخن - شيدر صوص - صوص رانش",
+                hasDouble: false,
+                priceSingle: 105,
+                priceDouble: 0
+            },
+            {
+                id: 34,
+                name: "بطاطس ستيك",
+                category: "sides",
+                tag: "المقبلات",
+                ingredients: "بطاطس متبلة - قطع لحم ستيك - بصل مشوي - شيدر صوص - صوص بوسطن",
+                hasDouble: false,
+                priceSingle: 115,
+                priceDouble: 0
+            },
+            {
+                id: 35,
+                name: "حلقات البصل",
+                category: "sides",
+                tag: "المقبلات",
+                ingredients: "6 حلقات بصل مقلية - صوص من اختيارك",
+                hasDouble: false,
+                priceSingle: 50,
+                priceDouble: 0
+            },
+            {
+                id: 36,
+                name: "موتزاريلا ستيكس",
+                category: "sides",
+                tag: "المقبلات",
+                ingredients: "4 قطع موتزاريلا ستيكس - صوص من اختيارك",
+                hasDouble: false,
+                priceSingle: 55,
+                priceDouble: 0
+            },
+            {
+                id: 37,
+                name: "ناجتس",
+                category: "sides",
+                tag: "المقبلات",
+                ingredients: "6 قطع ناجتس - صوص من اختيارك",
+                hasDouble: false,
+                priceSingle: 60,
+                priceDouble: 0
+            },
+            {
+                id: 38,
+                name: "فراخ تندر",
+                category: "sides",
+                tag: "المقبلات",
+                ingredients: "3 قطع دجاج ستريس - صوص من اختيارك",
+                hasDouble: false,
+                priceSingle: 85,
+                priceDouble: 0
+            },
+            {
+                id: 39,
+                name: "كوكبو",
+                category: "sides",
+                tag: "المقبلات",
+                ingredients: "بطاطس كرينكل - مشروب سوفتر درينك",
+                hasDouble: false,
+                priceSingle: 50,
+                priceDouble: 0
+            },
+
+            // Kids Meals
+            {
+                id: 40,
+                name: "وجبة ناجتس الأطفال",
+                category: "kids",
+                tag: "وجبات الأطفال",
+                ingredients: "4 قطع ناجتس - فرايز - عصير - صوص - لعبة",
+                hasDouble: true,
+                priceSingle: 80,
+                priceDouble: 0
+            },
+            {
+                id: 41,
+                name: "وجبة فراخ الأطفال",
+                category: "kids",
+                tag: "وجبات الأطفال",
+                ingredients: "ساندوتش تشكن برجر - فرايز - عصير - لعبة",
+                hasDouble: true,
+                priceSingle: 90,
+                priceDouble: 120
+            },
+            {
+                id: 42,
+                name: "وجبة البيف الأطفال",
+                category: "kids",
+                tag: "وجبات الأطفال",
+                ingredients: "ساندوتش بيف برجر - فرايز - عصير - لعبة",
+                hasDouble: true,
+                priceSingle: 105,
+                priceDouble: 150
+            },
+
+            // Kids Sandwiches
+            {
+                id: 43,
+                name: "ساندوتش فراخ الأطفال",
+                category: "kids-sandwich",
+                tag: "سندوتش الأطفال",
+                ingredients: "قطعة دجاج - امريكان تشيز - خس - صوص رانش",
+                hasDouble: true,
+                priceSingle: 65,
+                priceDouble: 95
+            },
+            {
+                id: 44,
+                name: "ساندوتش بيف الأطفال",
+                category: "kids-sandwich",
+                tag: "سندوتش الأطفال",
+                ingredients: "قطعة لحم بقري - امريكان تشيز - خس - صوص الف جزيرة",
+                hasDouble: true,
+                priceSingle: 75,
+                priceDouble: 120
+            },
+
+            // Extras & Drinks
+            { id: 45, category: "extras", name: "قطعة بيض برجر", tag: "الإضافات والشروبات", ingredients: "إضافة بيض طازج", priceSingle: 60, hasDouble: false },
+            { id: 46, category: "extras", name: "قطعة برجر سماش", tag: "الإضافات والشروبات", ingredients: "قطعة سماش إضافية", priceSingle: 50, hasDouble: false },
+            { id: 47, category: "extras", name: "قطعة ساندوتش برجر دجاج", tag: "الإضافات والشروبات", ingredients: "قطعة دجاج إضافية", priceSingle: 60, hasDouble: false },
+            { id: 48, category: "extras", name: "قطعة برجر دجاج للاطفال", tag: "الإضافات والشروبات", ingredients: "قطعة دجاج أطفال", priceSingle: 30, hasDouble: false },
+            { id: 49, category: "extras", name: "قطعة بيف للاطفال", tag: "الإضافات والشروبات", ingredients: "قطعة لحم أطفال", priceSingle: 45, hasDouble: false },
+            { id: 50, category: "extras", name: "جبنة امريكان", tag: "الإضافات والشروبات", ingredients: "شريحة جبنة إضافية", priceSingle: 10, hasDouble: false },
+            { id: 51, category: "extras", name: "صوص شيدر", tag: "الإضافات والشروبات", ingredients: "صوص شيدر غني ساخن", priceSingle: 25, hasDouble: false },
+            { id: 52, category: "extras", name: "صوص جبن ابيض", tag: "الإضافات والشروبات", ingredients: "صوص جبن أبيض خاص", priceSingle: 25, hasDouble: false },
+            { id: 53, category: "extras", name: "خيار مخلل", tag: "الإضافات والشروبات", ingredients: "مخلل مقرمش", priceSingle: 10, hasDouble: false },
+            { id: 54, category: "extras", name: "هالبينو", tag: "الإضافات والشروبات", ingredients: "فلفل حار", priceSingle: 10, hasDouble: false },
+            { id: 55, category: "extras", name: "صوص إضافي", tag: "الإضافات والشروبات", ingredients: "اختر صوصك المفضل", priceSingle: 15, hasDouble: false },
+            { id: 56, category: "extras", name: "مشروم و بصل", tag: "الإضافات والشروبات", ingredients: "مشروم طازج وبصل مكرمل", priceSingle: 25, hasDouble: false },
+            { id: 57, category: "extras", name: "بيكون", tag: "الإضافات والشروبات", ingredients: "بيكون مقرمش فاخر", priceSingle: 25, hasDouble: false },
+            { id: 58, category: "extras", name: "سعود تركي", tag: "الإضافات والشروبات", ingredients: "شريحة تركي مدخن", priceSingle: 20, hasDouble: false },
+            { id: 59, category: "extras", name: "ستيك لحم", tag: "الإضافات والشروبات", ingredients: "شريحة ستيك لحم بلدي", priceSingle: 25, hasDouble: false },
+            { id: 60, category: "extras", name: "مياة معدنية", tag: "الإضافات والشروبات", ingredients: "مياه نقية", priceSingle: 10, hasDouble: false },
+            { id: 61, category: "extras", name: "مشروب غازي", tag: "الإضافات والشروبات", ingredients: "كانز ساقع", priceSingle: 20, hasDouble: false },
+            { id: 62, category: "extras", name: "لتر مشروب غازي", tag: "الإضافات والشروبات", ingredients: "لتر كامل", priceSingle: 30, hasDouble: false },
+            { id: 63, category: "extras", name: "عصير أطفال", tag: "الإضافات والشروبات", ingredients: "عصير فريش طازج", priceSingle: 15, hasDouble: false }
+        ];
+
+        // Cart State
+        let cart = [];
+
+        // DOM Elements
+        const menuGrid = document.getElementById('menuGrid');
+        const cartBadge = document.getElementById('cartCount');
+        const cartDrawer = document.getElementById('cartDrawer');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const openCartBtn = document.getElementById('openCartBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartTotalPrice = document.getElementById('cartTotalPrice');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const tabBtns = document.querySelectorAll('.tab-btn');
+
+        // Render Menu Items
+        function renderMenu(category = 'all') {
+            menuGrid.innerHTML = '';
+            const filtered = category === 'all' ? menuData : menuData.filter(item => item.category === category);
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'menu-card';
+
+                let priceHtml = '';
+                if (item.hasDouble && item.priceDouble > 0) {
+                    priceHtml = `
+                        <div class="pricing-options">
+                            <div class="price-option selected" onclick="selectPricing(this, ${item.id}, 'single', ${item.priceSingle})">
+                                <input type="radio" name="size-${item.id}" checked>
+                                <label>سنجل<div class="price-val">${item.priceSingle} ج.م</div></label>
+                            </div>
+                            <div class="price-option" onclick="selectPricing(this, ${item.id}, 'double', ${item.priceDouble})">
+                                <input type="radio" name="size-${item.id}">
+                                <label>دبل<div class="price-val">${item.priceDouble} ج.م</div></label>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    priceHtml = `<div class="single-price">${item.priceSingle} ج.م</div>`;
+                }
+
+                card.innerHTML = `
+                    <div class="card-header-tag">${item.tag}</div>
+                    <div class="card-body">
+                        <h3 class="card-title">${item.name}</h3>
+                        <p class="card-ingredients">${item.ingredients}</p>
+                        ${priceHtml}
+                        <button class="add-to-cart-item" onclick="addToCart(${item.id})">
+                            <i class="fa-solid fa-cart-plus"></i> إضافة إلى السلة
+                        </button>
+                    </div>
+                `;
+                menuGrid.appendChild(card);
+            });
+        }
+
+        // Handle Pricing Selection for Single/Double
+        window.selectPricing = function(el, itemId, type, price) {
+            const parent = el.parentElement;
+            parent.querySelectorAll('.price-option').forEach(opt => opt.classList.remove('selected'));
+            el.classList.add('selected');
+            el.querySelector('input').checked = true;
+        };
+
+        // Add to Cart Logic
+        window.addToCart = function(id) {
+            const item = menuData.find(i => i.id === id);
+            const button = event.currentTarget;
+            const card = button.closest('.menu-card');
+            
+            let selectedType = 'سنجل';
+            let price = item.priceSingle;
+
+            if (item.hasDouble && item.priceDouble > 0) {
+                const selectedOption = card.querySelector('.price-option.selected');
+                if (selectedOption) {
+                    const priceValText = selectedOption.querySelector('.price-val').innerText;
+                    if (priceValText.includes(item.priceDouble.toString())) {
+                        selectedType = 'دبل';
+                        price = item.priceDouble;
+                    }
+                }
+            }
+
+            const cartKey = `${item.id}-${selectedType}`;
+            const existing = cart.find(c => c.cartKey === cartKey);
+
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({
+                    cartKey,
+                    id: item.id,
+                    name: `${item.name} (${selectedType})`,
+                    price,
+                    qty: 1
+                });
+            }
+
+            updateCartUI();
+            
+            openCartBtn.style.transform = 'scale(1.1)';
+            setTimeout(() => openCartBtn.style.transform = 'scale(1)', 200);
+        };
+
+        // Update Cart UI & Storage
+        function updateCartUI() {
+            cartItemsContainer.innerHTML = '';
+            let totalCount = 0;
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align:center; color: var(--text-muted); margin-top:40px;">سلة الطلبات فارغة حالياً</p>';
+            }
+
+            cart.forEach((cartItem, index) => {
+                totalCount += cartItem.qty;
+                totalPrice += cartItem.price * cartItem.qty;
+
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <div class="cart-item-info">
+                        <h4>${cartItem.name}</h4>
+                        <span>${cartItem.price * cartItem.qty} ج.م</span>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                        <span>${cartItem.qty}</span>
+                        <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(div);
+            });
+
+            cartBadge.innerText = totalCount;
+            cartTotalPrice.innerText = `${totalPrice} ج.م`;
+        }
+
+        // Change quantity in cart
+        window.changeQty = function(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        };
+
+        // Tab Filtering
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderMenu(btn.dataset.category);
+            });
+        });
+
+        // Cart Drawer Toggles
+        openCartBtn.addEventListener('click', () => {
+            cartDrawer.classList.add('active');
+            cartOverlay.classList.add('active');
+        });
+
+        closeCartBtn.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', closeCart);
+
+        function closeCart() {
+            cartDrawer.classList.remove('active');
+            cartOverlay.classList.remove('active');
+        }
+
+        // Checkout via WhatsApp with safe encoding for all browsers
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('الرجاء إضافة منتجات إلى السلة أولاً!');
+                return;
+            }
+
+            let message = 'مرحباً Za-Burger، أود طلب الأكل الآتي:\n\n';
+            let total = 0;
+
+            cart.forEach(item => {
+                message += `• ${item.name} × ${item.qty} - ${item.price * item.qty} ج.م\n`;
+                total += item.price * item.qty;
+            });
+
+            message += `\nالإجمالي الكلي: ${total} ج.م\nشكراً لكم!`;
+
+            // استخدام encodeURIComponent لضمان عمل الرابط ووضوحه على أي متصفح بدون أخطاء
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/201029009524?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // Initial render
+        renderMenu('all');
+    </script>
+</body>
+</html>
